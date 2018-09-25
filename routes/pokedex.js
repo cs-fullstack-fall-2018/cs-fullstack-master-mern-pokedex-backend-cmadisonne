@@ -36,6 +36,17 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:pokeid', ( req, res, ) => {
+    let pokeUrl = pokeapi + '/' + req.params.pokeid;
+    request(pokeUrl, function (err, response, body) {
+        if(err){
+            throw err;
+        }
+        let jsonResp = JSON.parse(body);
+        res.send(jsonResp)
+    })
+});
+
 
 // Export the routes
 module.exports = router;
